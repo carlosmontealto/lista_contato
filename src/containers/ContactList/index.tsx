@@ -1,16 +1,30 @@
 import { useSelector } from 'react-redux'
 import Contact from '../../components/Contact'
 import { RootReducer } from '../../store'
-import contatos from '../../store/reducers/contatos'
 import { MainContainer } from '../../styles'
 
 const ContactList = () => {
-  const { itens } = useSelector((state: RootReducer) => state.contatos)
+  const { itens, termo } = useSelector((state: RootReducer) => state.contatos)
+
+  const filtrarContatos = () => {
+    let contatosFiltrados = itens
+
+    if (termo !== undefined) {
+      contatosFiltrados = contatosFiltrados.filter(
+        (item) => item.nome.toLowerCase().search(termo.toLowerCase()) >= 0
+      )
+      return contatosFiltrados
+    } else {
+      return itens
+    }
+  }
+
+  const contatos = filtrarContatos()
 
   return (
     <MainContainer>
       <ul>
-        {itens.map((c) => (
+        {contatos.map((c) => (
           <li key={c.id}>
             <Contact
               id={c.id}

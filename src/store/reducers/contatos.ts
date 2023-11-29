@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type ContatoState = {
   itens: Contato[]
+  termo?: string
 }
 
 const initialState: ContatoState = {
@@ -19,12 +20,13 @@ const initialState: ContatoState = {
       telefone: '(11) 12345 - 1234'
     },
     {
-      id: 1,
+      id: 3,
       nome: 'Teste 2',
       email: 'teste2@teste.com',
       telefone: '(22) 12345 - 1234'
     }
-  ]
+  ],
+  termo: ''
 }
 
 const contatosSlice = createSlice({
@@ -32,9 +34,7 @@ const contatosSlice = createSlice({
   initialState,
   reducers: {
     remove: (state, action: PayloadAction<number>) => {
-      state.itens = state.itens.filter(
-        (contato) => contato.id !== action.payload
-      )
+      state.itens = state.itens.filter((item) => item.id !== action.payload)
     },
     edit: (state, action: PayloadAction<Contato>) => {
       const index = state.itens.findIndex(
@@ -47,8 +47,7 @@ const contatosSlice = createSlice({
     },
     register: (state, action: PayloadAction<Omit<Contato, 'id'>>) => {
       const contatoJaExiste = state.itens.find(
-        (contato) =>
-          contato.nome.toLowerCase() === action.payload.nome.toLowerCase()
+        (item) => item.nome.toLowerCase() === action.payload.nome.toLowerCase()
       )
 
       if (contatoJaExiste) {
@@ -62,10 +61,13 @@ const contatosSlice = createSlice({
         }
         state.itens.push(contatoNovo)
       }
+    },
+    alterarTermo: (state, action: PayloadAction<string>) => {
+      state.termo = action.payload
     }
   }
 })
 
-export const { remove, edit, register } = contatosSlice.actions
+export const { remove, edit, register, alterarTermo } = contatosSlice.actions
 
 export default contatosSlice.reducer

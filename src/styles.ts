@@ -45,14 +45,15 @@ export const Container = styled.div`
   grid-template-columns: 224px auto;
 `
 
-export const Campo = styled.input`
+export const Camp = styled.input`
   padding: 8px;
   background-color: #fff;
   border-radius: 8px;
   font-weight: bold;
   color: ${colors.gray};
-  border: none;
+  border: 1px solid ${colors.lightGray};
   width: 100%;
+  margin-bottom: 8px;
 `
 
 export const Button = styled.button`
@@ -74,4 +75,9 @@ export const MainContainer = styled.main`
   padding: 0 40px;
   height: 100vh;
   overflow-y: scroll;
+`
+export const Title = styled.h3`
+  font-size: 16px;
+  font-weight: bold;
+  margin: 16px 0;
 `

@@ -1,4 +1,4 @@
-import Form from '../../components/Form'
+import Form from '../../containers/Form'
 import SideBar from '../../containers/SideBar'
 
 const Register = () => {

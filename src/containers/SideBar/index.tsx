@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import { Button, Campo } from '../../styles'
+import { Button, Camp } from '../../styles'
 
 import * as S from './styles'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { RootReducer } from '../../store'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { alterarTermo } from '../../store/reducers/contatos'
 
 type Props = {
   homeScreen?: boolean
@@ -11,17 +12,17 @@ type Props = {
 
 const SideBar = ({ homeScreen }: Props) => {
   const navigate = useNavigate()
-  // const dispatch = useDispatch()
-  // const { itens } = useSelector((state: RootReducer) => state.contatos)
+  const dispatch = useDispatch()
+  const { termo } = useSelector((state: RootReducer) => state.contatos)
 
   return (
     <S.Aside>
       {homeScreen ? (
-        <Campo
+        <Camp
           type="text"
           placeholder="Buscar"
-          // value={itens}
-          // onChange={(e) => dispatch(alterarTermo(e.target.value))}
+          value={termo}
+          onChange={(e) => dispatch(alterarTermo(e.target.value))}
         />
       ) : (
         <Button onClick={() => navigate('/')} type="button">

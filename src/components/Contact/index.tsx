@@ -43,11 +43,13 @@ const Contact = ({
         {nome}
       </S.Title>
       <S.Description
+        type="email"
         disabled={!estaEditando}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <S.Description
+        type="text"
         disabled={!estaEditando}
         value={telefone}
         onChange={(e) => setTelefone(e.target.value)}
